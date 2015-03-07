@@ -3,6 +3,7 @@
 	require_once("classes/db.class.php");
 	require_once("classes/utils.class.php");
 	require_once("classes/coordinate.class.php");
+	require_once("classes/ride.class.php");
 
 	$userId = 0;
 	$rideId = 0;
@@ -27,9 +28,6 @@
 		$comment = $_REQUEST["comment"];
 	if(isset($_REQUEST["like"]))
 		$like = Utils::cleanInt($_REQUEST["like"]);
-	if(isset($_REQUEST["end"]))
-		$end = Utils::cleanInt($_REQUEST["end"]);
-
 
 
 	if($userId > 0 && !empty($coordinate)){
@@ -41,13 +39,12 @@
 		$coordinateDB->user_id = $userId;
 		$coordinateDB->end_ride = $endRide;
 
-		$json_return["status"]["status"] = "ok";
-		$json_return["status"]["message"] = "¡Buen viaje!";
+		$rideDB = new Ride();
+
+		if($endRide == 1)
+			$rideDB->setEndTime($userId);
 
 		if($coordinateDB->ride_id == 0){
-			require_once("classes/coordinate.class.php");
-
-			$rideDB = new Ride();
 			$rideDB->user_id = $userId;
 
 			if(!empty($comment))
@@ -59,19 +56,16 @@
 				$rideDB->like = 1;
 			else
 				$rideDB->like = "NULL";
-			
-			if($end == 1)
-				$rideDB->end_time = "NOW()";
-			else
-				$rideDB->end_time = "NULL";
 
 			$newRideId = $rideDB->setRide($rideDB);
 
 			$json_return["result"]["ride_id"] = $newRideId;
 		}
+
 		$coordinateDB->setCoordinate($coordinateDB);
 
-
+		$json_return["status"]["status"] = "ok";
+		$json_return["status"]["message"] = "¡Buen viaje!";
 
 	}else{
 		$json_return["status"]["status"] = "error";

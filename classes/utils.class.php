@@ -25,7 +25,7 @@ class Utils{
 	}
 
 	static public function cleanFloat($float){
-		return filter_var($float, FILTER_SANITIZE_NUMBER_FLOAT);
+		return filter_var($float, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 	}
 
 	static public function cleanCoordinate($coordinate){
@@ -33,15 +33,11 @@ class Utils{
 		$chunks = explode(",", $coordinate);
 		if(count($chunks) == 2){
 			foreach ($chunks as $key => $chunk) {
-				$coordinate_str .= $this->cleanFloat(trim($chunk)) . ",";
+				$coordinate_str .= self::cleanFloat(trim($chunk)) . ",";
 			}
 			$coordinate_str = substr($coordinate_str, 0, -1);
 		}
 		return $coordinate_str;
-	}
-
-	static public function cleanString($string){
-		
 	}
 }
 ?>
