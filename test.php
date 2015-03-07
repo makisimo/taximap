@@ -6,7 +6,7 @@
 	$coordinateDB = new Coordinate();
 
 	$coordinates = array("19.363919, -99.264264", "19.365802, -99.262387", "19.367492, -99.260778", "19.369264, -99.261089", "19.370650, -99.260992", "19.371996, -99.259909", "19.373181, -99.258761");
-	$count_coordinates = count($coordinates);
+	$count_coordinates = count($coordinates) - 1;
 
 	foreach ($coordinates as $key => $coordinate) {
 

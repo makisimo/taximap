@@ -46,6 +46,17 @@ class Coordinate extends CoordinateBase{
 		return $return;	
 	}
 
+	public function getCurrentPoint($userId, $rideId, $now){
+		$return = array();
+		if($userId > 0 && $rideId > 0 && !empty($now)){
+			$result = $this->db->query("SELECT id, x(coordinate) AS latitude, y(coordinate) AS longitude, ride_id, user_id, end_ride, created FROM coordinate WHERE user_id = $userId AND ride_id = $rideId AND created > '$now' ORDER BY created DESC LIMIT 1");
+			while ($row = $this->db->fetchNextObject($result)) {
+				$return[] = $row;
+			}
+		}
+		return $return;	
+	}
+
 	public function setCoordinate($coordinate){
 		return $this->db->execute("INSERT INTO $this->table (coordinate, ride_id, user_id, end_ride) VALUES (POINT({$coordinate->coordinate}), {$coordinate->ride_id}, {$coordinate->user_id}, {$coordinate->end_ride})");
 	}

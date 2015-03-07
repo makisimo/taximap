@@ -38,7 +38,7 @@
 			coordinates[<?php echo $key; ?>] = new google.maps.LatLng(<?php echo $coordinate->latitude; ?>, <?php echo $coordinate->longitude; ?>);
 			end_ride[<?php echo $key; ?>] = "<?php echo $coordinate->end_ride; ?>";
 		<?php	
-			echo (($coordinate->end_ride == 1)?"clearTimeout(ever); console.log('stop');":"");
+			echo (($coordinate->end_ride == 1)?"clearTimeout(ever);":"");
 		}
 		?>
 		google.maps.event.addDomListener(window, 'load', initialize);

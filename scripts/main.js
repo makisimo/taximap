@@ -84,7 +84,6 @@ function loadEver(){
 		    	if(point.end_ride == 1){
 		    		end = true;
 		    		clearTimeout(ever);
-		    		console.log('stop');
 		    	}
 		    });
 	    }

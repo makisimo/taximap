@@ -21,6 +21,15 @@ class Ride extends RideBase{
 		return $return;
 	}
 
+	function setRide($ride){
+		if($ride->comment != "NULL")
+			$ride->comment = "'" . $this->db->real_escape_string($ride->comment) . "'";
+
+		$this->db->execute("INSERT INTO $this->table (comment, `like`, end_time , user_id) VALUES ({$ride->comment}, {$ride->like}, {$ride->end_time}, {$ride->user_id})");
+
+		return $this->db->lastInsertedId();
+	}
+
 }
 
 ?>

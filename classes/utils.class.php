@@ -19,5 +19,29 @@ class Utils{
 	    }
 	    return $dateTime !== false;
 	}
+
+	static public function cleanInt($int){
+		return filter_var($int, FILTER_SANITIZE_NUMBER_INT);
+	}
+
+	static public function cleanFloat($float){
+		return filter_var($float, FILTER_SANITIZE_NUMBER_FLOAT);
+	}
+
+	static public function cleanCoordinate($coordinate){
+		$coordinate_str = "";
+		$chunks = explode(",", $coordinate);
+		if(count($chunks) == 2){
+			foreach ($chunks as $key => $chunk) {
+				$coordinate_str .= $this->cleanFloat(trim($chunk)) . ",";
+			}
+			$coordinate_str = substr($coordinate_str, 0, -1);
+		}
+		return $coordinate_str;
+	}
+
+	static public function cleanString($string){
+		
+	}
 }
 ?>

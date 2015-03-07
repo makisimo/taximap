@@ -5,11 +5,11 @@
 	require_once("classes/coordinate.class.php");
 
 	$now = "";
-	if(Utils::verifyDate($_REQUEST["now"], true))
-		$now = $_REQUEST["now"];
+	if(Utils::verifyDate($_POST["now"], true))
+		$now = $_POST["now"];
 
 	$coordinateDB = new Coordinate();
-	$coordinates = $coordinateDB->getCurrentPoints(1, 1, $now);
+	$coordinates = $coordinateDB->getCurrentPoint(1, 1, $now);
 	header('Content-Type: application/json');
 	echo json_encode($coordinates);
 ?>
