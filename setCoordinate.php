@@ -46,6 +46,7 @@
 
 		if($coordinateDB->ride_id == 0){
 			$rideDB->user_id = $userId;
+			$rideDB->end_time = "NULL";
 
 			if(!empty($comment))
 				$rideDB->comment = "'" . $comment . "'";
@@ -55,10 +56,10 @@
 			if($like == 1)
 				$rideDB->like = 1;
 			else
-				$rideDB->like = "NULL";
+				$rideDB->like = 0;
 
-			$newRideId = $rideDB->setRide($rideDB);
-
+			$newRideId = $rideDB->setRide($rideDB);			
+			$coordinateDB->ride_id = $newRideId;
 			$json_return["result"]["ride_id"] = $newRideId;
 		}
 
