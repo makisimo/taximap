@@ -1,0 +1,7 @@
+@charset "utf-8";
+html, body, #map-canvas{
+	width: 100%;
+	height: 100%;
+	margin:0;
+	padding: 0;
+}
