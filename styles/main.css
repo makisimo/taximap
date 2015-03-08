@@ -10,9 +10,8 @@ html, body, #map-canvas{
 }
 
 header{
-	width: 30%;
-	height: 30%;
-	padding: 20px;
+	width: 5px;
+	height: 100%;
 	background-color: #fff;
 	position: absolute;
 	top: 0;
@@ -21,20 +20,58 @@ header{
 	-webkit-box-shadow: 5px 5px 5px 0px rgba(50, 50, 50, 0.75);
 	-moz-box-shadow:    5px 5px 5px 0px rgba(50, 50, 50, 0.75);
 	box-shadow:         5px 5px 5px 0px rgba(50, 50, 50, 0.75);
+	background: #ffcc00 url(../../images/bg-menu.jpg) left top repeat-x;
+	-webkit-transition: 1s ease-in-out;
+	-moz-transition: 1s ease-in-out;
+	-o-transition: 1s ease-in-out;
+	transition: 1s ease-in-out;
+	font-size: 0;
+}
+header:hover {
+	width: 300px;
+	font-size: 15px;
+}
+#show-data{
+	-webkit-transition: 1s ease-in-out;
+	-moz-transition: 1s ease-in-out;
+	-o-transition: 1s ease-in-out;
+	transition: 1s ease-in-out;
+	position: absolute;
+	margin: 0;
+	padding: 0;
+}
+header:hover #show-data{
+	-webkit-transform: translate(300px,0);
+	-moz-transform: translate(300px,0);
+	-o-transform: translate(300px,0);
+	-ms-transform: translate(300px,0);
+	transform: translate(300px,0);
+}
+header nav ul, header nav ul li{
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 
-#plate{
+#taxi_info{
+	height: 70%;
+	margin-top: 40%;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+header:hover #plate{
+	-webkit-transition: 1s ease-in-out;
+	-moz-transition: 1s ease-in-out;
+	-o-transition: 1s ease-in-out;
+	transition: 1s ease-in-out;
+	font-size: 20px;
+	line-height: 40px;
+}
+footer{
 	width: 100%;
+	height: 10%;
+	background-color: #000;
 	text-align: center;
-}
-
-#plate strong{
-	display: block;
-	margin: 0 auto;
-	width: 100px;
-	height: 50px;
-	line-height: 50px;
-	background: transparent url(../images/plate.png) center center no-repeat;
-	background-size: 100%;
-	font-size: 22px;
+	color: #fff;
+	padding: 5px 0;
 }

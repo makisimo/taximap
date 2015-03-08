@@ -38,25 +38,19 @@
 		$consession = $consession->Taxi->concesion;
 	?>
 	<header>
-		<nav>
-			<ul>
-				<li>
-					<figure><img src="" alt="Información del taxi"></figure>
-				</li>
-			</ul>
-		</nav>
+		
+		<figure id="show-data"><img src="images/taxi.png" alt="Información del taxi"></figure>
+		
+		<div id="taxi_info">
+			<div id="plate"><strong>Placa: <?php echo $consession->placa; ?></strong></div>
+			<p id="driver_name"><strong>Dueño: </strong><?php echo $consession->nombre . " " . $consession->apellido_paterno . " " . $consession->apellido_materno; ?></p>
+			<p id="auto"><strong>Auto: </strong><?php echo $consession->marca . " " . $consession->submarca . " " . $consession->anio; ?></p>
+		</div>
+		<footer><p>Copyright 2015 Coding Donuts</p></footer>
 	</header>
-
-	<section id="taxi_info">
-		<div id="plate"><strong><?php echo $consession->placa; ?></strong></div>
-		<p id="driver_name"><?php echo $consession->nombre . " " . $consession->apellido_paterno . " " . $consession->apellido_materno; ?></p>
-		<p id="auto"><?php echo $consession->marca . " " . $consession->submarca . " " . $consession->anio; ?></p>
-	</section>
-
+	
 	<section id="map-canvas"></section>
-
-	<footer><p>Copyright 2015 Coding Donuts</p></footer>
-
+	
 	<script>
 		now = '<?php echo date("Y-m-d H:i:s"); ?>';
 		<?php
