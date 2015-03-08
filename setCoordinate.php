@@ -12,6 +12,7 @@
 	$comment = "";
 	$like = 0;
 	$end = 0;
+	$plate = "";
 
 	$json_return = array('status' => array('status' => 'error', 'message' => 'Hubo un problema al cargar la coordenada'));
 
@@ -28,6 +29,8 @@
 		$comment = $_REQUEST["comment"];
 	if(isset($_REQUEST["like"]))
 		$like = Utils::cleanInt($_REQUEST["like"]);
+	if(isset($_REQUEST["plate"]))
+		$plate = $_REQUEST["plate"];
 
 
 	if($userId > 0 && !empty($coordinate)){
@@ -57,6 +60,11 @@
 				$rideDB->like = 1;
 			else
 				$rideDB->like = 0;
+
+			if(!empty($plate))
+				$rideDB->plate = "'" . $plate . "'";
+			else
+				$rideDB->plate = "NULL";
 
 			$newRideId = $rideDB->setRide($rideDB);			
 			$coordinateDB->ride_id = $newRideId;

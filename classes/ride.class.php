@@ -23,11 +23,18 @@ class Ride extends RideBase{
 		return $return;
 	}
 
+	function getLastByUser($user_id){
+		return $this->db->queryUniqueObject("SELECT * FROM ride WHERE user_id = $user_id ORDER BY start_time DESC");
+	}
+
 	function setRide($ride){
 		if($ride->comment != "NULL")
 			$ride->comment = "'" . $this->db->real_escape_string($ride->comment) . "'";
 
-		$this->db->execute("INSERT INTO $this->table (comment, `like`, end_time , user_id) VALUES ({$ride->comment}, {$ride->like}, {$ride->end_time}, {$ride->user_id})");
+		if($ride->plate != "NULL")
+			$ride->plate = "'" . $this->db->real_escape_string($ride->plate) . "'";
+
+		$this->db->execute("INSERT INTO $this->table (comment, `like`, end_time , user_id, plate) VALUES ({$ride->comment}, {$ride->like}, {$ride->end_time}, {$ride->user_id}, {$ride->plate})");
 
 		return $this->db->lastInsertedId();
 	}

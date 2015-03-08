@@ -19,17 +19,42 @@
 </head>
 <body>
 	<?php
-		//INSERT INTO coordinate values ( 0, POINT(19.358794, -99.27772), 1, 1 );
-		//INSERT INTO coordinate (coordinate, ride_id, user_id) values ( POINT(19.358794, -99.27772), 1, 1 
 		require_once("classes/conf.class.php");
 		require_once("classes/db.class.php");
 		require_once("classes/utils.class.php");
+		require_once("classes/loadjson.class.php");
 		require_once("classes/coordinate.class.php");
-		//require_once("classes/ride.class.php");
+		require_once("classes/ride.class.php");
+
+		// get user on move
+		$user_id = 1;
+
+		$rideDB = new Ride();
+		$ride = $rideDB->getLastByUser($user_id);
 
 		$coordinateDB = new Coordinate();
-		$coordinates = $coordinateDB->getByUserRide(1, 1);
+		$coordinates = $coordinateDB->getByUserRide($user_id, $ride->id);
+		$consession = LoadJSON::load("movilidad", "taxis", $ride->plate);
+		$consession = $consession->Taxi->concesion;
 	?>
+	<header>
+		<nav>
+			<ul>
+				<li>
+					<figure><img src="" alt="Información del taxi"></figure>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+	<section id="taxi_info">
+		<div id="plate"><strong><?php echo $consession->placa; ?></strong></div>
+		<p id="driver_name"><?php echo $consession->nombre . " " . $consession->apellido_paterno . " " . $consession->apellido_materno; ?></p>
+		<p id="auto"><?php echo $consession->marca . " " . $consession->submarca . " " . $consession->anio; ?></p>
+	</section>
+
+	<section id="map-canvas"></section>
+
 	<script>
 		now = '<?php echo date("Y-m-d H:i:s"); ?>';
 		<?php
@@ -45,6 +70,4 @@
 		loadEver();
 	</script>
 
-	<div id="map-canvas"></div>
-	
 </body>
