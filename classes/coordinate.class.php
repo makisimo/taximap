@@ -27,7 +27,7 @@ class Coordinate extends CoordinateBase{
 	public function getByUserRide($userId, $rideId){
 		$return = array();
 		if($userId > 0 && $rideId > 0){
-			$result = $this->db->query("SELECT id, x(coordinate) AS latitude, y(coordinate) AS longitude, ride_id, user_id, end_ride, created FROM coordinate WHERE user_id = $userId AND ride_id = $rideId");
+			$result = $this->db->query("SELECT id, x(coordinate) AS latitude, y(coordinate) AS longitude, ride_id, user_id, end_ride, panic, created FROM coordinate WHERE user_id = $userId AND ride_id = $rideId");
 			while ($row = $this->db->fetchNextObject($result)) {
 				$return[] = $row;
 			}
@@ -38,7 +38,7 @@ class Coordinate extends CoordinateBase{
 	public function getCurrentPoints($userId, $rideId, $now){
 		$return = array();
 		if($userId > 0 && $rideId > 0 && !empty($now)){
-			$result = $this->db->query("SELECT id, x(coordinate) AS latitude, y(coordinate) AS longitude, ride_id, user_id, end_ride, created FROM coordinate WHERE user_id = $userId AND ride_id = $rideId AND created > '$now'");
+			$result = $this->db->query("SELECT id, x(coordinate) AS latitude, y(coordinate) AS longitude, ride_id, user_id, end_ride, panic,  created FROM coordinate WHERE user_id = $userId AND ride_id = $rideId AND created > '$now'");
 			while ($row = $this->db->fetchNextObject($result)) {
 				$return[] = $row;
 			}
@@ -49,7 +49,7 @@ class Coordinate extends CoordinateBase{
 	public function getCurrentPoint($userId, $rideId, $now){
 		$return = array();
 		if($userId > 0 && $rideId > 0 && !empty($now)){
-			$result = $this->db->query("SELECT id, x(coordinate) AS latitude, y(coordinate) AS longitude, ride_id, user_id, end_ride, created FROM coordinate WHERE user_id = $userId AND ride_id = $rideId AND created > '$now' ORDER BY created DESC LIMIT 1");
+			$result = $this->db->query("SELECT id, x(coordinate) AS latitude, y(coordinate) AS longitude, ride_id, user_id, end_ride, panic,  created FROM coordinate WHERE user_id = $userId AND ride_id = $rideId AND created > '$now' ORDER BY created DESC LIMIT 1");
 			while ($row = $this->db->fetchNextObject($result)) {
 				$return[] = $row;
 			}
@@ -58,7 +58,7 @@ class Coordinate extends CoordinateBase{
 	}
 
 	public function setCoordinate($coordinate){
-		return $this->db->execute("INSERT INTO $this->table (coordinate, ride_id, user_id, end_ride) VALUES (POINT({$coordinate->coordinate}), {$coordinate->ride_id}, {$coordinate->user_id}, {$coordinate->end_ride})");
+		return $this->db->execute("INSERT INTO $this->table (coordinate, ride_id, user_id, end_ride, panic) VALUES (POINT({$coordinate->coordinate}), {$coordinate->ride_id}, {$coordinate->user_id}, {$coordinate->end_ride}, {$coordinate->panic})");
 	}
 
 }

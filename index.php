@@ -28,6 +28,7 @@
 
 		// get user on move
 		$user_id = 1;
+		$panic = "";
 
 		$rideDB = new Ride();
 		$ride = $rideDB->getLastByUser($user_id);
@@ -50,7 +51,7 @@
 	</header>
 	
 	<section id="map-canvas"></section>
-	
+
 	<script>
 		now = '<?php echo date("Y-m-d H:i:s"); ?>';
 		<?php
@@ -58,12 +59,18 @@
 		?>
 			coordinates[<?php echo $key; ?>] = new google.maps.LatLng(<?php echo $coordinate->latitude; ?>, <?php echo $coordinate->longitude; ?>);
 			end_ride[<?php echo $key; ?>] = "<?php echo $coordinate->end_ride; ?>";
-		<?php	
+		<?php
 			echo (($coordinate->end_ride == 1)?"clearTimeout(ever);":"");
+
+			if($coordinate->panic == 1){
+				$panic = "show";
+			}
 		}
 		?>
 		google.maps.event.addDomListener(window, 'load', initialize);
 		loadEver();
 	</script>
+
+	<div id="warning" class="<?php echo $panic; ?>">Una se&ntilde;al de peligro ha sido activada por el usuario en el taxi.</div>
 
 </body>

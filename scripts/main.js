@@ -38,7 +38,7 @@ function addPoint(icon_image, i, animate){
 	//addresses[i] = getAddress(coordinates[i].lat(), coordinates[i].lng(), i);
 	var address = getAddress(coordinates[i].lat(), coordinates[i].lng());
 
-	messages[i] = '<div style="width: 200px; text-align: center;"><img src="images/taxi.png"><p>' + address + '<br><!--<a href="http://maps.google.com/maps?f=d&geocode=&daddr=19.358794,-99.27772&z=15" target="_blank">Get directions</a>--></p></div>';
+	messages[i] = '<div style="width: 250px; text-align: left;"><img src="images/taxi2.png" style="float: left; padding-right: 10px;"><p style="padding-top: 10px;">' + address + '<br><!--<a href="http://maps.google.com/maps?f=d&geocode=&daddr=19.358794,-99.27772&z=15" target="_blank">Get directions</a>--></p></div>';
 	markers[i] = new google.maps.Marker({
 		position: coordinates[i],
 		map: map,

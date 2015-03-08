@@ -8,7 +8,6 @@ abstract class RideBase {
 	public $user_id;
 	public $start_time;
 	public $end_time;
-	public $panic;
 
 }
 

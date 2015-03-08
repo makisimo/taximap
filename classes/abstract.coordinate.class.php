@@ -7,6 +7,7 @@ abstract class CoordinateBase {
 	public $ride_id;
 	public $user_id;
 	public $end_ride;
+	public $panic;
 	public $created;
 
 }

@@ -13,6 +13,7 @@
 	$like = 0;
 	$end = 0;
 	$plate = "";
+	$panic = 0;
 
 	$json_return = array('status' => array('status' => 'error', 'message' => 'Hubo un problema al cargar la coordenada'));
 
@@ -24,6 +25,8 @@
 		$endRide = Utils::cleanInt($_REQUEST["end_ride"]);
 	if(isset($_REQUEST["coordinate"]))
 		$coordinate = Utils::cleanCoordinate($_REQUEST["coordinate"]);
+	if(isset($_REQUEST["panic"]))
+		$panic = Utils::cleanInt($_REQUEST["panic"]);
 
 	if(isset($_REQUEST["comment"]))
 		$comment = $_REQUEST["comment"];
@@ -41,6 +44,7 @@
 		$coordinateDB->ride_id = $rideId;
 		$coordinateDB->user_id = $userId;
 		$coordinateDB->end_ride = $endRide;
+		$coordinateDB->panic = $panic;
 
 		$rideDB = new Ride();
 
