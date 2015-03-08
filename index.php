@@ -9,7 +9,7 @@
     <meta charset="utf-8">
   	<meta name="viewport" content="width=device-width,initial-scale=1, user-scalable=no">
  	
- 	<title>TaxiMap</title>
+ 	<title>EseTaxi</title>
 
 	<link rel="shortcut icon" href="images/favicon.ico" type="img/ico"> 
  	<link href="styles/main.css" rel="stylesheet" type="text/css" media="screen">
@@ -54,6 +54,8 @@
 	</section>
 
 	<section id="map-canvas"></section>
+
+	<footer><p>Copyright 2015 Coding Donuts</p></footer>
 
 	<script>
 		now = '<?php echo date("Y-m-d H:i:s"); ?>';
